@@ -8,8 +8,4 @@ module Discover
   def devices(options = {})
     SSDP.new(options).devices
   end
-
-  def first(options = {})
-    SSDP.new(options).first
-  end
 end

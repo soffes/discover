@@ -17,25 +17,21 @@ module Discover
 
     attr_reader :service_type
     attr_reader :timeout
+    attr_reader :first
 
     # @param service_type [String] the identifier of the device you're trying to find
     # @param timeout [Fixnum] timeout in seconds
     def initialize(options = {})
       @service_type = (options[:service_type] || ALL_SERVICE_TYPE)
       @timeout = (options[:timeout] || DEFAULT_TIMEOUT)
+      @first = options[:first]
       initialize_socket
     end
 
     # Look for devices on the network
     def devices
       @socket.send(search_message, 0, MULTICAST_ADDR, MULTICAST_PORT)
-      listen_for_responses()
-    end
-
-    # Look for the first devices on the network
-    def first
-      @socket.send(search_message, 0, MULTICAST_ADDR, MULTICAST_PORT)
-      listen_for_responses(true)
+      listen_for_responses(first)
     end
 
   private

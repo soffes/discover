@@ -20,6 +20,20 @@ Or install it yourself as:
 
 ## Usage
 
+You can list devices with the command line:
+
+``` shell
+$ discover devices
+10.0.1.7  Sonos PLAY:3
+10.0.1.9  Sonos CONNECT
+10.0.1.10 Sonos PLAY:3
+10.0.1.11 Sonos PLAY:3
+10.0.1.17 Hue Bridge
+```
+Run `discover help` for more CLI documentation.
+
+Here are a few examples of discovering devices in Ruby:
+
 ``` ruby
 # Find all UPNP devices
 devices = Discover.devices

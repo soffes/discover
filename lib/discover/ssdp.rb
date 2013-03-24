@@ -4,13 +4,14 @@ require 'timeout'
 
 module Discover
   class SSDP
-    # Listen for all devices
-    ALL_SERVICE_TYPE = 'ssdp:all'.freeze
     # SSDP multicast IPv4 address
     MULTICAST_ADDR = '239.255.255.250'.freeze
 
     # SSDP UDP port
     MULTICAST_PORT = 1900.freeze
+
+    # Listen for all devices
+    DEFAULT_SERVICE_TYPE = 'ssdp:all'.freeze
 
     # Timeout in 5 second
     DEFAULT_TIMEOUT = 5.freeze
@@ -22,7 +23,7 @@ module Discover
     # @param service_type [String] the identifier of the device you're trying to find
     # @param timeout [Fixnum] timeout in seconds
     def initialize(options = {})
-      @service_type = (options[:service_type] || ALL_SERVICE_TYPE)
+      @service_type = options[:service_type]
       @timeout = (options[:timeout] || DEFAULT_TIMEOUT)
       @first = options[:first]
       initialize_socket
@@ -43,7 +44,7 @@ module Discover
       Timeout::timeout(timeout) do
         loop do
           device = Device.new(@socket.recvfrom(2048))
-          next if service_type && service_type == device.service_type
+          next if service_type && service_type != device.service_type
 
           if first
             return device
@@ -72,7 +73,7 @@ module Discover
         "HOST: #{MULTICAST_ADDR}:reservedSSDPport",
         'MAN: ssdp:discover',
         "MX: #{timeout}",
-        "ST: #{service_type || ALL_SERVICE_TYPE}"
+        "ST: #{service_type || DEFAULT_SERVICE_TYPE}"
       ].join("\n")
     end
   end

@@ -13,7 +13,7 @@ module Discover
     MULTICAST_PORT = 1900.freeze
 
     # Timeout in 5 second
-    DEFAULT_TIMEOUT = 1.freeze
+    DEFAULT_TIMEOUT = 5.freeze
 
     attr_reader :service_type
     attr_reader :timeout
@@ -47,7 +47,7 @@ module Discover
       Timeout::timeout(timeout) do
         loop do
           device = Device.new(@socket.recvfrom(2048))
-          device = nil unless !service_type || service_type == device.service_type
+          next if service_type && service_type == device.service_type
 
           if first
             return device

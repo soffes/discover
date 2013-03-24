@@ -8,4 +8,9 @@ module Discover
   def devices(options = {})
     SSDP.new(options).devices
   end
+
+  def first(options = {})
+    options = options.merge(:first => true)
+    SSDP.new(options).devices
+  end
 end

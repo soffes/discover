@@ -1,6 +1,6 @@
 # Discover
 
-Discover UPNP devices with Ruby.
+Discover UPNP devices using SSDP with Ruby.
 
 ## Installation
 
@@ -24,11 +24,13 @@ You can list devices with the command line:
 
 ``` shell
 $ discover devices
-10.0.1.7  Sonos PLAY:3
-10.0.1.9  Sonos CONNECT
-10.0.1.10 Sonos PLAY:3
-10.0.1.11 Sonos PLAY:3
-10.0.1.17 Hue Bridge
+IP Address      | Name            | Service Type
+----------------|-----------------|-------------
+10.0.1.7        | Sonos PLAY:3    | urn:schemas-upnp-org:device:ZonePlayer:1
+10.0.1.9        | Sonos CONNECT   | urn:schemas-upnp-org:device:ZonePlayer:1
+10.0.1.10       | Sonos PLAY:3    | urn:schemas-upnp-org:device:ZonePlayer:1
+10.0.1.11       | Sonos PLAY:3    | urn:schemas-upnp-org:device:ZonePlayer:1
+10.0.1.17       | Hue Bridge      | urn:schemas-upnp-org:device:basic:1
 ```
 Run `discover help` for more CLI documentation.
 

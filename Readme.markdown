@@ -4,19 +4,7 @@ Discover UPNP devices using SSDP with Ruby.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-``` ruby
-gem 'discover'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install discover
+*Unreleased*
 
 ## Usage
 

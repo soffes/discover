@@ -13,8 +13,8 @@ module Discover
     # Listen for all devices
     DEFAULT_SERVICE_TYPE = 'ssdp:all'.freeze
 
-    # Timeout in 5 second
-    DEFAULT_TIMEOUT = 5.freeze
+    # Timeout in 2 seconds
+    DEFAULT_TIMEOUT = 2.freeze
 
     attr_reader :service_type
     attr_reader :timeout
